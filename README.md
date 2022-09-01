@@ -31,7 +31,7 @@ Twilio needs for turn credential because at the end will be connecting our appli
 
 WebRTC is an open source project that enables peer-to-peer communication between browsers or the applications.In other words, Bertice allows you to exchange any kind of media for the web, such as video of the data without any required plugin or framework applications which are using properties.
 
-This projects [Live Link](https://meetroom.vercel.app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+This projects [Live Link](https://meetrooms.herokuapp.app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
 

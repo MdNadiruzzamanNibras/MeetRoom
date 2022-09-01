@@ -4,7 +4,7 @@ import { FaCreativeCommons } from "react-icons/fa";
 import { BsRecordCircle, BsPlus } from "react-icons/bs";
 import { IoPeopleOutline } from "react-icons/io5";
 
-const GroupVideo = ({userVideo, peers, Video, getUrl, copySuccess, hangUp, toggleAudio, toggleVideo, shareScreen, stopShare}) => {
+const GroupVideo = ({userVideo, getUrl, copySuccess, hangUp, toggleAudio, toggleVideo, shareScreen, stopShare}) => {
     return (
         <div className='w-full mx-auto'>
             <div className='flex items-center justify-between text-gray-200'>
@@ -39,13 +39,13 @@ const GroupVideo = ({userVideo, peers, Video, getUrl, copySuccess, hangUp, toggl
                 </div>
                 
                 {/* =======Video Player======= */}
-                <div className="grid grid-cols-2 rounded-xl gap-2 p-2">
-                    <video className="groupVideo" muted ref={userVideo} autoPlay playsInline />
-                    {peers.map((peer) => {
+                <div className="grid grid-cols-1 rounded-xl gap-2 p-2">
+                    <video className="group-one" muted ref={userVideo} autoPlay playsInline />
+                    {/* {peers.map((peer) => {
                         return (
                             <Video className="groupVideo" key={peer.peerID} peer={peer.peer} />
                         );
-                    })}
+                    })} */}
 {/* 
                     <div className="flex items-center justify-center">
                         <video className="oneVideo" muted ref={userVideo} autoPlay playsInline />
@@ -63,7 +63,7 @@ const GroupVideo = ({userVideo, peers, Video, getUrl, copySuccess, hangUp, toggl
                     <div className='flex gap-2 md:gap-4 justify-center place-items-end text-gray-200 font-bold cursor-pointer list-none absolute bottom-8 left-1/3'>
                        <button onClick = {toggleAudio}>
                             <li className='bg-green-400 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 px-2 lg:px-4 py-1 lg:py-2 font-bold'>
-                                <i className="fas fa-microphone-slash font-bold" id="btn-a"></i> 
+                                <i className="fas fa-microphone font-bold" id="btn-a"></i> 
                             </li>
                         </button>
                         <button onClick={toggleVideo}>

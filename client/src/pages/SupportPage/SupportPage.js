@@ -1,5 +1,5 @@
 import React from 'react';
-import support from '../../assets/24x7';
+import support from '../../assets/24x7.jpg';
 
 const SupportPage = () => {
     return (

@@ -21,10 +21,10 @@ const Schedule = () => {
     }
 
     return (
-        <div className="bg-chat">
+        <div className="bg-slate-900">
             {
                 posts?.slice(0, 4).map((item) =>
-                    <div className='border border-slate-600 p-2 my-2'>
+                    <div className='border border-slate-700 p-2 my-2 rounded-md'>
                         <div className="flex justify-between">
                             <h2 className='text-xl text-white'>{item.meetingPurpose}</h2>
                             <button> <i className=" fad fa-ellipsis-h-alt bg-slate-800 text-xs px-3 py-1 hover:bg-slate-700 rounded font-medium text-white"></i> </button>

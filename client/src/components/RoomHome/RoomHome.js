@@ -6,6 +6,7 @@ import CreateSingleRoom from '../../ConferenceRoom/ModalConference/CreateSingleR
 import CreateGroupRoom from '../../ConferenceRoom/ModalConference/CreateGroupRoom';
 import CreateChatRoom from '../../ConferenceRoom/ModalConference/CreateChatRoom';
 import CreateBroadcastRoom from '../../ConferenceRoom/ModalConference/CreateBroadcastRoom';
+import WatchBg from '../../assets/images/watchbg.jpg';
 import 'react-clock/dist/Clock.css';
 import 'react-calendar/dist/Calendar.css';
 
@@ -26,7 +27,7 @@ const RoomHome = () => {
 
         <div className='w-full mx-auto cursor-pointer'>
             <div className="flex flex-col lg:flex-row gap-2">
-                <div className="card w-12/12 lg:w-8/12 bg-base-100 shadow-xl h-full" style={{ backgroundImage: 'url(https://placeimg.com/400/225/arch)', backgroundSize: 'cover' }}>
+                <div className="card w-12/12 lg:w-8/12 bg-base-100 shadow-xl h-full" style={{ backgroundImage: `url(${WatchBg})`, backgroundSize: 'cover' }}>
                     <div className="card-body bg-clock text-gray-300">
                         <div className="flex flex-col md:flex-row justify-center lg:justify-between mx-auto">
                             <Clock value={value} />

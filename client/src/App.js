@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, useParams } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Hasan from './Indivisual/Hasan';
 import Roctim from './Indivisual/Roctim';
 import Alamin from './Indivisual/Alamin';
@@ -20,7 +20,6 @@ import auth from './firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import UserConference from './ConferenceRoom/UserConference/UserConference';
 import ConferenceRoom from './ConferenceRoom/ConferenceRoom';
-import VideoConference from './ConferenceRoom/VideoConference/VideoConference';
 import HomeConference from './ConferenceRoom/HomeConference/HomeConference';
 import ScheduleConference from './ConferenceRoom/ScheduleConference/ScheduleConference';
 import NotificationConference from './ConferenceRoom/NotificationConference/NotificationConference';
@@ -29,7 +28,6 @@ import MeetingSchedule from './components/MeetingSchedule/MeetingSchedule';
 import Error from './components/Error/Error';
 import Dashboard from './Dashboard/Dashboard';
 import AllUser from './Dashboard/AllUser';
-import MyReview from './Dashboard/MyReview';
 import { ToastContainer } from 'react-toastify';
 import AddMember from './Dashboard/AddMember';
 import ManageMember from './Dashboard/ManageMember';
@@ -37,7 +35,6 @@ import SingleRoom from './ConferenceRoom/VideoConference/SingleRoom';
 import GroupRoom from './ConferenceRoom/VideoConference/GroupRoom';
 import LiveBroadCast from './ConferenceRoom/VideoConference/LiveBroadCast';
 import 'react-toastify/dist/ReactToastify.css';
-import CreateBroadCast from './ConferenceRoom/ModalConference/CreateBroadCast';
 
 
 function App() {
@@ -84,7 +81,6 @@ function App() {
           {/* group room */}
           <Route path="roomGroup/:roomGroupID" element={<GroupRoom/>} />
           {/* live broadcast */}
-          <Route path="createBroadcast" element={<CreateBroadCast />} />
           <Route path="liveCast" element={<LiveBroadCast/>} />
 
           {/* just chat live */}

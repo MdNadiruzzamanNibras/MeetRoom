@@ -234,13 +234,13 @@ const SingleRoom = (props) => {
    
        // Toggle Audio
        let isAudio = true;
-       let iconAudio = 'fas fa-microphone font-bold';
+       let iconAudio = 'fas fa-microphone-slash font-bold';
        const toggleAudio = ()=> {
            document.getElementById('btn-a').classList = iconAudio;
            if (isAudio) {
-                iconAudio = 'fal fa-microphone-slash font-bold';
+                iconAudio = 'fal fa-microphone font-bold';
            } else {
-                iconAudio = 'fas fa-microphone font-bold';
+                iconAudio = 'fas fa-microphone-slash font-bold';
            }
            isAudio = !isAudio;
            userStream.current.getAudioTracks()[0].enabled = isAudio;
@@ -262,14 +262,14 @@ const SingleRoom = (props) => {
                document.getElementById('btn-share').classList = 'fal fa-share-square font-bold';
                senders.current.find(sender => sender.track.kind === 'video').replaceTrack(screenTrack);
                
-               document.getElementById('btn-share').style.display = 'none';
-               document.getElementById('btn-stop').classList = 'fal fa-share-square font-bold';
-               document.getElementById('btn-stop').style.display = 'inline';
+               document.getElementById('btn-share').classList = 'fal fa-share-square font-bold';
+               document.getElementById('btn-stop').classList = 'far fa-ban font-bold';
+               document.getElementById('btn-stop').classList = 'far fa-ban font-bold';
    
                // when the screenshare is turned off, replace the displayed screen with the video of the user
                screenTrack.onended = function() {
                    senders.current.find(sender => sender.track.kind === "video").replaceTrack(userStream.current.getTracks()[1]);
-                   document.getElementById('btn-share').classList = 'far fa-ban font-bold';
+                   document.getElementById('btn-share').classList = 'fal fa-share-square font-bold';
                }
            });
        }
@@ -277,9 +277,9 @@ const SingleRoom = (props) => {
        // stopping screen share
        const stopShare =()=> {
            senders.current.find(sender => sender.track.kind === "video").replaceTrack(userStream.current.getTracks()[1]);
-           document.getElementById('btn-stop').style.display = 'none';
-           document.getElementById('btn-share').style.display = 'inline';
-           document.getElementById('btn-share').style.backgroundColor = 'far fa-ban font-bold';
+           document.getElementById('btn-stop').classList = 'far fa-ban font-bold';
+           document.getElementById('btn-share').classList = 'fal fa-share-square font-bold';
+           document.getElementById('btn-share').classList = 'far fa-ban font-bold';
        }
    
        // Copy the Url

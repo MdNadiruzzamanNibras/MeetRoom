@@ -21,7 +21,7 @@ const socketToRoom = {};
 // when the user is forming a connection with socket.io
 io.on("connection", socket => {
 
-    // handling one on one video call
+    // ===========handling one on one video call=============
     socket.on("join room", roomID => {
 
         // if the room is already created, that means a person has already joined the room
@@ -58,14 +58,14 @@ io.on("connection", socket => {
         io.to(incoming.target).emit("ice-candidate", incoming.candidate);
     });
 
-    // handling Group Video Call
+    // ============handling Group Video Call===============
     socket.on("join room group", roomID => {
         // getting the room with the room ID and adding the user to the room
         if (users[roomID]) {
             const length = users[roomID].length;
 
-            // if 4 people have joined already, alert that room is full
-            if (length === 4) {
+            // if 6 people have joined already, alert that room is full
+            if (length === 6) {
                 socket.emit("room full");
                 return;
             }

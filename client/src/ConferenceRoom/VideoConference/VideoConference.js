@@ -1,7 +1,6 @@
 import React from 'react';
-// import Slider from 'react-slick';
 import ChatTab from '../../components/ChatTab/ChatTab';
-import Slider from '../../components/Slider/Slider';
+import ParticipantSlide from '../../components/Slider/ParticipantSlide';
 import Schedule from '../../components/Schedule/Schedule';
 import SingleVideo from '../../components/Video/SingleVideo';
 import GroupVideo from '../../components/Video/GroupVideo';
@@ -13,7 +12,7 @@ const VideoConference = () => {
                 {
                     <SingleVideo/> ? <SingleVideo/> : <GroupVideo/>
                 }
-                <Slider></Slider>
+                <ParticipantSlide></ParticipantSlide>
             </div>
             {/* ========Right Sidebar ========*/}
             <div className="md:w-12/12 lg:w-4/12">

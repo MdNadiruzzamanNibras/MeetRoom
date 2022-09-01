@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import io from "socket.io-client";
 import Peer from "simple-peer";
-import Slider from "../../components/Slider/Slider";
+import ParticipantSlide from "../../components/Slider/ParticipantSlide";
 import GroupVideo from '../../components/Video/GroupVideo';
-import GroupChat from '../../components/Chat/GroupChat';
 import Schedule from '../../components/Schedule/Schedule';
+// import GroupChat from '../../components/Chat/GroupChat';
 
 // Streaming Video of the user
 const Video = (props) => {
@@ -23,8 +23,9 @@ const Video = (props) => {
 
 // setting the constraints of video box
 const videoConstraints = {
-    height: window.innerHeight,
-    width: window.innerWidth
+    video: true,
+    height: window.innerHeight / 2,
+    width: window.innerWidth / 2
 };
 
 const GroupRoom = () => {
@@ -110,8 +111,55 @@ const GroupRoom = () => {
     // creating a peer object for newly joined user
     function createPeer(userToSignal, callerID, stream) {
         const peer = new Peer({
+            
             initiator: true,
             trickle: false,
+            config: { iceServers: [
+                { urls: 'stun:stun.l.google.com:19302' }, 
+                { urls: 'stun:stun1.l.google.com:19302' },
+                { urls: 'stun:stun2.l.google.com:19302' },
+                { urls: 'stun:stun3.l.google.com:19302' },
+                { urls: 'stun:stun4.l.google.com:19302' },
+                { urls: "stun:openrelay.metered.ca:80" },
+                { urls: 'stun:global.stun.twilio.com:3478?transport=udp' },
+                {
+                    url: 'turn:192.158.29.39:3478?transport=udp',
+                    credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+                    username: '28224511:1379330808'
+                },
+                {
+                    "urls": [
+                    "turn:13.250.13.83:3478?transport=udp"
+                    ],
+                    "username": "YzYNCouZM1mhqhmseWk6",
+                    "credential": "YzYNCouZM1mhqhmseWk6"
+                },
+                {
+                    urls: 'turn:numb.viagenie.ca',
+                    credential: 'muazkh',
+                    username: 'webrtc@live.com'
+                },
+                {
+                    url: 'turn:turn.anyfirewall.com:443?transport=tcp',
+                    credential: 'webrtc',
+                    username: 'webrtc'
+                },
+                {
+                    urls: "turn:openrelay.metered.ca:80",
+                    username: "openrelayproject",
+                    credential: "openrelayproject",
+                },
+                {
+                    urls: "turn:openrelay.metered.ca:443",
+                    username: "openrelayproject",
+                    credential: "openrelayproject",
+                },
+                {
+                    urls: "turn:openrelay.metered.ca:443?transport=tcp",
+                    username: "openrelayproject",
+                    credential: "openrelayproject",
+                }
+            ]},
             stream,
         });       
 
@@ -127,6 +175,52 @@ const GroupRoom = () => {
         const peer = new Peer({
             initiator: false,
             trickle: false,
+            config: { iceServers: [
+                { urls: 'stun:stun.l.google.com:19302' }, 
+                { urls: 'stun:stun1.l.google.com:19302' },
+                { urls: 'stun:stun2.l.google.com:19302' },
+                { urls: 'stun:stun3.l.google.com:19302' },
+                { urls: 'stun:stun4.l.google.com:19302' },
+                { urls: "stun:openrelay.metered.ca:80" },
+                { urls: 'stun:global.stun.twilio.com:3478?transport=udp' },
+                {
+                    url: 'turn:192.158.29.39:3478?transport=udp',
+                    credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+                    username: '28224511:1379330808'
+                },
+                {
+                    "urls": [
+                    "turn:13.250.13.83:3478?transport=udp"
+                    ],
+                    "username": "YzYNCouZM1mhqhmseWk6",
+                    "credential": "YzYNCouZM1mhqhmseWk6"
+                },
+                {
+                    urls: 'turn:numb.viagenie.ca',
+                    credential: 'muazkh',
+                    username: 'webrtc@live.com'
+                },
+                {
+                    url: 'turn:turn.anyfirewall.com:443?transport=tcp',
+                    credential: 'webrtc',
+                    username: 'webrtc'
+                },
+                {
+                    urls: "turn:openrelay.metered.ca:80",
+                    username: "openrelayproject",
+                    credential: "openrelayproject",
+                },
+                {
+                    urls: "turn:openrelay.metered.ca:443",
+                    username: "openrelayproject",
+                    credential: "openrelayproject",
+                },
+                {
+                    urls: "turn:openrelay.metered.ca:443?transport=tcp",
+                    username: "openrelayproject",
+                    credential: "openrelayproject",
+                }
+            ]},
             stream,
         })
 
@@ -154,13 +248,13 @@ const GroupRoom = () => {
 
     // Toggle Audio
     let isAudio = true;
-    let iconAudio = 'fas fa-microphone font-bold';
+    let iconAudio = 'fas fa-microphone-slash font-bold';
     function toggleAudio() {
         document.getElementById('btn-a').classList = iconAudio;
         if (isAudio) {
-            iconAudio = 'fal fa-microphone-slash font-bold';
+            iconAudio = 'fal fa-microphone font-bold';
         } else {
-            iconAudio = 'fas fa-microphone font-bold';
+            iconAudio = 'fas fa-microphone-slash font-bold';
         }
         isAudio = !isAudio;
         userStream.current.getAudioTracks()[0].enabled = isAudio;
@@ -181,14 +275,14 @@ const GroupRoom = () => {
                document.getElementById('btn-share').classList = 'fal fa-share-square font-bold';
                senders.current.find(sender => sender.track.kind === 'video').replaceTrack(screenTrack);
                
-               document.getElementById('btn-share').style.display = 'none';
+               document.getElementById('btn-share').classList = 'fal fa-share-square font-bold';
                document.getElementById('btn-stop').classList = 'fal fa-share-square font-bold';
-               document.getElementById('btn-stop').style.display = 'inline';
+               document.getElementById('btn-stop').classList = 'far fa-ban font-bold';
    
                // when the screenshare is turned off, replace the displayed screen with the video of the user
                screenTrack.onended = function() {
                    senders.current.find(sender => sender.track.kind === "video").replaceTrack(userStream.current.getTracks()[1]);
-                   document.getElementById('btn-share').classList = 'far fa-ban font-bold';
+                   document.getElementById('btn-share').classList = 'fal fa-share-square font-bold';
                }
            });
        }
@@ -218,8 +312,8 @@ const GroupRoom = () => {
             <div className="md:w-12/12 lg:w-8/12">
                 <GroupVideo
                  userVideo={userVideo}
-                 peers={peers}
-                 Video={Video}
+                //  peers={peers}
+                //  Video={Video}
                  getUrl={getUrl}
                  copySuccess={copySuccess}
                  hangUp={hangUp}
@@ -239,23 +333,23 @@ const GroupRoom = () => {
                         })}
                     </div>
                 </div> */}
-                <Slider 
-                peers={peers}
-                Video={Video}
+                <div className='py-2'>
+                    <ParticipantSlide 
+                    peers={peers}
+                    Video={Video}
                 /> 
+                </div>
             </div>
 
             {/* ========Right Sidebar ========*/}
             <div className="md:w-12/12 lg:w-4/12">
                 {/* ========Group Chat Options ========*/}
                 <div className='pl-0 lg:pl-2'>
-                    <h2 className='text-md lg:text-xl text-center uppercase font-semibold p-2 border border-green-700 rounded-md text-gray-400'>Live Chat</h2>
-                    <GroupChat/>
-
+                    {/* <h2 className='text-md lg:text-xl text-center uppercase font-semibold p-2 border border-green-700 rounded-md text-gray-400'>Live Chat</h2> */}
                     {/*====== Next Schedule===== */}
                     <div className="mt-2">
                         <h2 className='text-gray-300 font-semibold py-1 pl-3'>Next Schedule is:</h2>
-                        <div className="rounded-lg first-letter:mb-2 overflow-y-auto max-h-40 px-3 py-2 tab-bar">
+                        <div className="rounded-lg first-letter:mb-2 overflow-y-auto max-h-screen px-3 py-2">
                         <Schedule></Schedule>
                         </div>
                     </div>

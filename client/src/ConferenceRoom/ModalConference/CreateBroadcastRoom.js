@@ -5,7 +5,7 @@ const CreateBroadcastRoom = () => {
     const navigate = useNavigate();
 
     const createbroadCastRooom = () =>{
-        navigate('/conference/createBroadcast')
+        navigate('/conference/liveCast')
     }
 
 

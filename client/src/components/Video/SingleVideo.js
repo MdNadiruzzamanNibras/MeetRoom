@@ -25,19 +25,31 @@ const SingleVideo = ({userVideo, partnerVideo, getUrl, copySuccess, toggleAudio,
                 </div>
                 
                 {/* =======Video Player======= */}
-                <div className="grid grid-cols-2 gap-2 justify-center rounded-xl p-2">
-                    <video id="user" className="oneVideo" muted autoPlay playsInline ref = {userVideo} />
-                    <video id="user" className="oneVideo" autoPlay playsInline ref = {partnerVideo} />
-
-                </div>
+                    <div className="grid grid-cols-1 gap-2 justify-center rounded-xl p-2 relative">
+                        <video id="user" className="oneVideo absolute left-0 top-0" muted autoPlay playsInline ref = {userVideo} />
+                        <video id="peer" className="oneVideo relative" autoPlay playsInline ref = {partnerVideo} />
+                    </div>
+                {/* {
+                    userVideo ? 
+                    <div className="grid grid-cols-1 gap-2 justify-center rounded-xl p-2 relative">
+                        <video id="user" className="oneVideo absolute left-0 top-0" muted autoPlay playsInline ref = {userVideo} />
+                        <video id="peer" className="oneVideo relative" autoPlay playsInline ref = {partnerVideo} />
+                    </div>
+                    :
+                    <div className="grid grid-cols-1 gap-2 justify-center rounded-xl p-2 relative">
+                        <video id="user" className="oneVideo relative" muted autoPlay playsInline ref = {userVideo} />
+                        <video id="peer" className="oneVideo absolute left-0 top-0" autoPlay playsInline ref = {partnerVideo} />
+                    </div>
+                } */}
+               
                 
 
                  {/* =======Video Controller======= */}
                 <div className='grid grid-rows justify-center items-baseline relative'>
-                    <div className='flex gap-2 md:gap-4 justify-center place-items-end text-gray-200 font-bold cursor-pointer list-none absolute bottom-8 left-1/3'>
+                    <div className='flex gap-2 md:gap-4 justify-center place-items-end text-gray-200 font-bold cursor-pointer list-none bottom-8 absolute left-1/3'>
                         <button onClick = {toggleAudio}>
                             <li className='bg-green-400 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 px-2 lg:px-4 py-1 lg:py-2 font-bold'>
-                                <i className="fas fa-microphone-slash font-bold" id="btn-a"></i> 
+                                <i className="fas fa-microphone font-bold" id="btn-a"></i> 
                             </li>
                         </button>
                         <button onClick={toggleVideo}>

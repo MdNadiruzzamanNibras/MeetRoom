@@ -1,26 +1,37 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
+import {  toast } from 'react-toastify';
 
 const Contact = () => {
+    const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+   
+
+    emailjs.sendForm('service_qzqltzp', 'template_60p3n3t', form.current, 'xW7W0SSa5CommkT6F')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      toast('Email is send')
+  };
     return (
         <main className='px-2'>
                 <div className='lg:px-6 py-2'>
                     <div className="flex justify-center flex-col lg:flex-row-reverse ">
-                        <div className="w-12/12 lg:w-4/12">
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Name</span>
-                                    </label>
-                                    <input type="text" placeholder="name" className="input input-bordered" />
-            
-                                    <label className="label">
-                                        <span className="label-text">Message</span>
-                                    </label>
-                                    <textarea className="textarea textarea-bordered h-24" placeholder="Send Message"></textarea>
-                                </div>
-                                <div className="form-control mt-6">
-                                    <button className="btn btn-primary">Send</button>
-                                </div>
-                        </div>                    
+                    <form className="w-12/12 lg:w-4/12 form-control" ref={form} onSubmit={sendEmail}>
+    
+    <input type="text" placeholder="Name" name="user_name" className="input input-bordered" /><br />
+    
+   
+    <input type="email" placeholder="Email" name="user_email" className="input input-bordered" /><br />
+  
+    <textarea className="textarea textarea-bordered h-24" name="message" placeholder="Message"></textarea><br />
+    <input className="btn btn-primary" type="submit" value="Send" />
+  </form>               
+                         
                     <div className="w-12/12 lg:w-8/12 ">
                         <div className="text-center px-4">
                             <h2 className="text-3xl leading-normal font-bold text-gray-600 dark:text-gray-200">
